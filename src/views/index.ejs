@@ -2,17 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
+    <title>DATA CONTABILIDAD</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
-    <h1>Hola Mundo</h1>
-    <p>Datos personales</p>
-    <ul>
-        <li>Daviannys Fuentes</li>
-        <li>31878463</li>
-        <li>Seccion 3</li>
-    </ul>
+
+        <nav class="nav">
+            <div class="nav__container container">
+                <img src="img/CONTA-removebg-preview.png" alt="" class="nav__img">
+                <ul class="nav__ul">
+                    <li class="nav__li"><a href="#Inicio"  class="nav__a active">Inicio</a></li>
+                    <li class="nav__li"><a href="#Usuarios" class="nav__a active">Usuarios</a></li>
+                    <li class="nav__li"><a href="#Empresa" class="nav__a active">Empresa</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <header class="header">
+
+        </header>
+
+        <main class="main">
+            <section id="Inicio">
+            <div class="main__title">
+                
+
+                <h1 class="main__title--h1">Consultoria y Contaduria</h1>
+                <span class="main__title--span">Accede al siguiente nivel empresarial</span>
+                
+            </div>
+        </section>
+            <section id="Usuarios">
+                <div class="alcatel__container container">
+                    <article class="alcatel__box alcatel__info">
+                        <img src="img/user_17827179.png" alt="" class="alcatel__img">
+                        <ul class="alcatel__ul">
+                            <h2 class="alcatel__h2">Usuario</h2>
+                            <li class="alcatel__li">Nombre</li>
+                            <li class="alcatel__li">Apellido</li>
+                            <li class="alcatel__li">Cedula</li>
+                            <li class="alcatel__li">Experiencia laboral</li>
+                            <li class="alcatel__li">ㅤㅤㅤㅤㅤㅤㅤㅤ</li>
+                            <a href="#Encuesta" class="alcatel__a">Explorar</a>
+                        </ul>
+                        
+                            
+                    </article>
+                    <article class="alcatel__box alcatel__txt">
+                        <img src="img/construction_15941389.png" alt="Imagen centrada">
+    <p><b>Gracias por su interés en formar parte de nuestro equipo.</b> Para continuar con el proceso de selección, le solicitamos amablemente que nos envíe la siguiente <a href="#Empresas" class="nav__a active">documentacion.</a></p>
+</article>
+                </div>
+            </section>
+            <div class="contenedor">
+                <img src="img/VINOTINTO.jpg" alt="Imagen centrada">
+            </div>
+
+            <section class="camara">
+                <div class="camara__container container">
+                    <h2 class="camara__h2">Ventaja de nuestros servicios</h2>                    
+                    <p class="camara__p">
+                        <li>Optimización financiera: Ayuda a gestionar eficientemente los recursos, reduciendo costos innecesarios </li>
+                        <li>Cumplimiento normativo: Asegura que la empresa opere dentro de las leyes fiscales y contables vigentes </li>
+                        <li>Toma de decisiones estratégicas: Proporciona análisis financiero y asesoramiento para mejorar la rentabilidad </li>
+
+                    </p>
+                </div>
+            </section>
+            
+            <section class="camara">
+                <div class="camara__container container">
+                    <h2 class="camara__h2">Desventajas de nuestros servicios</h2>                    
+                    <p class="camara__p">
+                    <li> Costo de los servicios: Contratar una consultoría puede representar un gasto adicional, especialmente para pequeñas empresas </li>
+                    <li>Dependencia externa: En algunos casos, la empresa puede volverse demasiado dependiente de la consultoría y perder autonomía en la toma de decisiones </li>
+                    <li>daptabilidad a cada negocio: No todas las consultorías se adaptan perfectamente a las necesidades particulares de una empresa, lo que puede generar problemas de compatibilidad.
+                        Al final, el éxito de una empresa de compatibilidad </li>
+                    </p>
+                </div>
+            </section>
+
+             
+            <section class="camara">
+                <div class="camara__container container">
+                    <section id="Encuesta">
+
+                        <h2>Registro de Información</h2>
+                        <p>                                                   
+                            ㅤㅤㅤ
+                            ㅤㅤㅤ
+                            ㅤㅤㅤ
+                        </p>
+                        <form action="procesar.php" method="post" enctype="multipart/form-data">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required><br><br>
+                            
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" required><br><br>
+                            
+                            <label for="cedula">Cédula:</label>
+                            <input type="text" id="cedula" name="cedula" required><br><br>
+                            
+                            <label for="experiencia">Experiencia Laboral:</label>
+                            <textarea id="experiencia" name="experiencia" rows="4" required></textarea><br><br>
+                            
+                            <label for="foto">Foto:</label>
+                            <input type="file" id="foto" name="foto" accept="image/*"><br><br>
+                            
+                            <input type="submit" value="Enviar">
+                            <p> ㅤㅤㅤ</p>
+                        </form>
+                    </section>
+                </div>
+            </section>
+        </main>
+        <section id="Empresas">
+            <div class="alcatel__container container">
+                <article class="alcatel__box alcatel__info">
+                    <img src="https://img.freepik.com/free-photo/handsome-business-man-posing-close-up_23-2148336823.jpg?ga=GA1.1.1076137269.1745612017&semt=ais_hybrid&w=740" alt="" class="alcatel__img">
+                    <ul class="alcatel__ul">
+                        <h2 class="alcatel__h2">Perfiles de Aspirantes</h2>
+                        <li class="alcatel__li">Cesar</li>
+                        <li class="alcatel__li">Borrego</li>
+                        <li class="alcatel__li">31.971.132</li>
+                        <li class="alcatel__li">Gerente de finanzas en la Juventus</li>
+                        <li class="alcatel__li">ㅤㅤㅤㅤㅤㅤㅤㅤ</li>
+                        <a href="#Encuesta" class="alcatel__a">Explorar</a>
+                    </ul>
+                    
+                        
+                </article>
+
+                <section id="Empresass">
+                    <div class="alcatel__container container">
+                        <article class="alcatel__box alcatel__info">
+                            <img src="https://img.freepik.com/free-photo/portrait-smiling-blonde-woman_23-2148316635.jpg?t=st=1745628564~exp=1745632164~hmac=8dd2cdf38b78290348f81d1ef0b9ca62b49ca46bcb9764f77f4156cdf8b4c60c&w=826" alt="" class="alcatel__img">
+                            <ul class="alcatel__ul">
+                                <h2 class="alcatel__h2">Perfiles de Aspirantes</h2>
+                                <li class="alcatel__li">Valeria</li>
+                                <li class="alcatel__li">Tavera</li>
+                                <li class="alcatel__li">30.190.182</li>
+                                <li class="alcatel__li">Cajera de makro</li>
+                                <li class="alcatel__li">ㅤㅤㅤㅤㅤㅤㅤㅤ</li>
+                                <a href="#Encuesta" class="alcatel__a">Explorar</a>
+                            </ul>
+                            
+                                
+                        </article>
+        
+ 
+                        <footer class="footer">
+                            <div class="footer__container container">
+                                <p class="footer__p">Hacer la tecnologia innovadora sea accesible para que todos los disfruten.</p>
+                                <ul class="footer__ul">
+                                    <li class="footer__li active"><a href="" class="footer__a">Usuarios</a></li>
+                                    <li class="footer__li"><a href="" class="footer__a">Sobre Nosotros</a></li>
+                                    <li class="footer__li"><a href="" class="footer__a">Suscribirse</a></li>
+                                </ul>
+                            </div>
+                        </footer>     
 </body>
+
 </html>
