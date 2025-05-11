@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    overflow-x: hidden;
+    font-family: 'Krona One', sans-serif;
+}
+
+.container{
+    width: 90%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+
+.nav{
+    width: 100%;
+    border-bottom: solid 10px hwb(0 13% 67%);
+    padding: 1rem 0;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    position: absolute;
+}
+
+.nav__container{
+    gap: 3em;
+    display: flex;
+    align-items: center;
+}
+
+.nav__img{
+    width: 200px;
+}
+
+.nav__ul{
+    display: flex;
+    list-style-type: none;
+    gap: 3em;
+}
+.nav__a{
+    display: block;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: black;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+.nav__a:hover{
+    background-color: #661212;
+    border-radius: 10px;
+    color: rgb(59, 14, 14);
+}
+ 
+.nav__a.active{
+    background-color: #440b0b;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+
+    /* HEADER */
+
+.header{
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/imagen1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    /* MAIN */
+
+.main__title{
+    display: grid;
+    width: 100%;
+    text-align: center;
+    background-color: #791919;
+    color: #ffffff;
+    padding: 2rem 0;
+    gap: 1em;
+}
+
+.main__title--h1{
+    font-size: 3rem;
+}
+
+.alcatel{
+    
+}
+
+.alcatel__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding: 2rem 0;
+}
+
+.alcatel__box{
+    display: grid;
+    border: solid 1px #280505;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    align-items: center;
+}
+
+.alcatel__info{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1em;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contenedor img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.alcatel__img{
+    width:100px;
+}
+
+.alcatel__ul{
+    list-style-type: none;
+}
+
+.alcatel__h2{
+    font-size: 20px;
+}
+
+.alcatel__li{
+    display: block;
+    line-height: 26px;
+    font-size: 13px;
+    color: #555;
+}
+
+.alcatel__a{
+    text-decoration: none;
+    border-bottom: solid 1px #2a0404;
+    color: #2e0404;
+}
+
+.alcatel__txt{
+    color: #555;
+    line-height: 25px;
+}
+
+
+.alcatel__txt b{
+    color: #000000;
+}
+
+    /* BANNER */
+
+.banner{
+    height: 450px;
+    width: 100%;
+    background-color: #360505;
+}
+
+.banner__container{
+    width: 100%;
+    height: 450px;
+    background-image: url(./../img/camera.jpg);
+    background-size: cover;
+    background-position: center;
+    background-position-y: -100px ;
+    background-repeat: no-repeat;
+}
+
+.camara{
+    margin: 20px 0;
+}
+
+.camara__container{
+    display: grid;
+    border: solid 1px #2f0505;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    gap: 2em;
+}
+
+.camara__h2{
+    color: #300606;
+    font-size: 1rem;
+}
+
+.camara__p{
+    color: #220404;
+}
+
+    /* FOOTER  */
+
+.footer{
+    background-color: #3a0707;
+}
+
+.footer__container{
+    padding: 2rem 0;
+    display: grid;
+    gap: 2em;
+}
+
+.footer__img{
+    width: 100px;
+}
+
+.footer__p{
+    font-size: 12px;
+    width: 300px;
+    color: #ffffff;
+}
+
+.footer__ul{
+    display: flex;
+    list-style-type: none;
+}
+
+.footer__li{
+    border-left: solid 2px #2f0a0a;
+    padding: 0 1rem;
+}
+
+.footer__li.active{
+    padding-left: 0;
+    border-left: none;
+}
+
+.footer__a{
+    text-decoration: none;
+    color: #ffffff;
+    border-bottom: solid 1px #ffffff;
+}
+
+@media (max-width:960px) {
+    .nav__img{
+        width: 60px;
+    }
+
+    .nav__ul{
+        gap: 1em;
+    }
+
+    .nav__a{
+        font-size: 12px;
+        padding: .5rem;
+    }
+
+    .alcatel__container{
+        grid-template-columns: 1fr;
+    }
+
+    .banner{
+        height: 350px;
+    }
+
+    .banner__container{
+    }
+}
