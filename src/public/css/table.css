@@ -3,6 +3,11 @@
   max-width: 100%;
   margin: 2rem auto;
   padding: 0 1rem;
+  background-color: #fff9f9; 
+}
+
+body {
+  background-color:#2e0404; 
 }
 
 .contacts-header {
@@ -27,8 +32,8 @@
 }
 
 .contacts-table thead tr {
-  background-color: #3498db;
-  color: white;
+  background-color: rgb(195, 213, 224);
+  color: black;
   text-align: left;
 }
 
@@ -47,13 +52,10 @@
 }
 
 .contacts-table tbody tr:last-of-type {
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid rgb(195, 213, 224);
 }
 
-.contacts-table tbody tr:hover {
-  background-color: #e3f2fd;
-  transform: translateX(5px);
-}
+
 
 .contact-email {
   color: #2980b9;
