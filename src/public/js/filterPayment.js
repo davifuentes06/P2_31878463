@@ -49,57 +49,82 @@ document.addEventListener('DOMContentLoaded', () => {
                      payment.currency === 'GBP' ? '£ GBP' : payment.currency;
 
       return `
-        <div class="payment-card" style="animation-delay: ${index * 0.1}s">
-          <div class="payment-card-header">
-            <h3 class="payment-card-title">${payment.nombreTitular}</h3>
-            <span class="payment-card-type">${icono}</span>
-          </div>
+<div class="bg-white rounded-xl shadow-md p-6 mb-6 overflow-hidden border border-gray-200 animate-fadeIn" style="animation-delay: ${index * 0.1}s">
+  <!-- Header -->
+  <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+    <h3 class="text-lg font-semibold text-gray-800">${payment.nombreTitular}</h3>
+    <span class="text-2xl">${icono}</span>
+  </div>
 
-          <div class="payment-card-body">
-            <div class="payment-detail"><span class="payment-detail-label">Correo:</span>
-              <span class="payment-detail-value contact-email">${payment.correo}</span>
-            </div>
+  <!-- Body -->
+  <div class="py-4 space-y-3">
+    <!-- Correo -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Correo:</span>
+      <span class="w-2/3 break-words text-gray-800">${payment.correo}</span>
+    </div>
+    
+    <!-- Tarjeta -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Tarjeta:</span>
+      <span class="w-2/3 break-words font-mono">•••• •••• •••• ${ultimos4}</span>
+    </div>
+    
+    <!-- Expira -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Expira:</span>
+      <span class="w-2/3 break-words">${payment.expMonth}/${payment.expYear.toString().slice(-2)}</span>
+    </div>
+    
+    <!-- Moneda -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Moneda:</span>
+      <span class="w-2/3 break-words">${moneda}</span>
+    </div>
+    
+    <!-- Monto -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Monto:</span>
+      <span class="w-2/3 break-words">${payment.amount}</span>
+    </div>
+    
+    <!-- Descripción -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Descripción:</span>
+      <span class="w-2/3 break-words">${payment.descripcion}</span>
+    </div>
+    
+    <!-- Referencia -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Referencia:</span>
+      <span class="w-2/3 break-words">${payment.reference}</span>
+    </div>
+    
+    <!-- Estado -->
+    <div class="flex flex-wrap items-start">
+      <span class="w-1/3 font-medium text-gray-600">Estado:</span>
+      <span class="w-2/3 break-words uppercase font-bold ${
+        payment.estado === 'aprobado'
+          ? 'text-green-600'
+          : payment.estado === 'rechazado'
+          ? 'text-red-600'
+          : 'text-yellow-500'
+      }">${payment.estado}</span>
+    </div>
+  </div>
 
-            <div class="payment-detail"><span class="payment-detail-label">Tarjeta:</span>
-              <span class="payment-detail-value payment-card-number">•••• •••• •••• ${ultimos4}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Expira:</span>
-              <span class="payment-detail-value">${payment.expMonth}/${payment.expYear.toString().slice(-2)}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Moneda:</span>
-              <span class="payment-detail-value">${moneda}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Monto:</span>
-              <span class="payment-detail-value">${payment.amount}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Descripción:</span>
-              <span>${payment.descripcion}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Referencia:</span>
-              <span>${payment.reference}</span>
-            </div>
-
-            <div class="payment-detail"><span class="payment-detail-label">Estado:</span>
-              <span class="uppercase font-bold ${
-                payment.estado === 'aprobado'
-                  ? 'text-green-600'
-                  : payment.estado === 'rechazado'
-                  ? 'text-red-600'
-                  : 'text-yellow-500'
-              }">${payment.estado}</span>
-            </div>
-          </div>
-
-          <div class="payment-card-footer">
-            <div class="payment-date"><i class="far fa-calendar-alt"></i> ${fechaStr}</div>
-            <div><i class="far fa-clock"></i> ${horaStr}</div>
-          </div>
-        </div>
+  <!-- Footer -->
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center pt-4 border-t border-gray-200 text-gray-500 text-sm gap-2">
+    <div class="flex items-center gap-1">
+      <i class="far fa-calendar-alt"></i>
+      <span>${fechaStr}</span>
+    </div>
+    <div class="flex items-center gap-1">
+      <i class="far fa-clock"></i>
+      <span>${horaStr}</span>
+    </div>
+  </div>
+</div>
       `;
     }).join('');
 
