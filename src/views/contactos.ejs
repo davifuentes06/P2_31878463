@@ -5,9 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros de Contactos</title>
     <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <nav class="nav">
+            <div class="nav__container container">
+                <img src="img/CONTA-removebg-preview.png" alt="" class="nav__img">
+                <ul class="nav__ul">
+                    <li class="nav__li"><a href="/"  class="nav__a active">Inicio</a></li>
+                    <li class="nav__li"><a href="#Usuarios" class="nav__a active">Usuarios</a></li>
+                    <li class="nav__li"><a href="#Empresa" class="nav__a active">Empresa</a></li>
+                    <li class="nav__li"><a href="/getPayment" class="nav__a active">Pagos</a></li>
+                    <li class="nav__li"><a href="/admin/contacts" class="nav__a active">Contactos</a></li>
+                    <li class="nav__li" ><a href="/login?form=login" class="nav__a active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                    <% if(isAdmin){%>
+                        <li class="nav__li" ><a href="/logout" class="nav__a active"><i class="fas fa-sign-out-alt"></i>Cerrar</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+
+
     <div class="contacts-container">
         <div class="contacts-header">
             <h1 class="contacts-title">Registros de Contacto</h1>

@@ -25,7 +25,6 @@ body{
     padding: 1rem 0;
     background-color: rgb(255, 255, 255);
     align-items: center;
-    position: absolute;
 }
 
 .nav__container{
