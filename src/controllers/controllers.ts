@@ -9,6 +9,7 @@ function getClientIp(req:Request) {
       ? forwarded.split(',')[0].trim() 
       : forwarded[0].trim();
   }
+  
   return req.ip;
 }
 interface Contacto {
