@@ -1,88 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registros de Contactos</title>
-    <link rel="stylesheet" href="/css/table.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= __('contactRecords') %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+  rel="stylesheet"
+  />
+  <style>
+   :root {
+    --primary:  #0066cc;
+    --secondary:#00ccff;
+    --accent:   #ff6600;
+    --dark:     #1a1a2e;
+    --light:    #f8f9fa;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+  }
+</style>
 </head>
-<body>
 
-    <nav class="nav">
-            <div class="nav__container container">
-                <img src="img/CONTA-removebg-preview.png" alt="" class="nav__img">
-                <ul class="nav__ul">
-                    <li class="nav__li"><a href="/"  class="nav__a active">Inicio</a></li>
-                    <li class="nav__li"><a href="#Usuarios" class="nav__a active">Usuarios</a></li>
-                    <li class="nav__li"><a href="#Empresa" class="nav__a active">Empresa</a></li>
-                    <li class="nav__li"><a href="/getPayment" class="nav__a active">Pagos</a></li>
-                    <li class="nav__li"><a href="/admin/contacts" class="nav__a active">Contactos</a></li>
-                    <li class="nav__li" ><a href="/login?form=login" class="nav__a active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-                    <% if(isAdmin){%>
-                        <li class="nav__li" ><a href="/logout" class="nav__a active"><i class="fas fa-sign-out-alt"></i>Cerrar</a></li>
-                    <% } %>
-                </ul>
-            </div>
-        </nav>
+<body class="min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
 
-    <form id="filterForm" class="mb-6 w-full max-w-lg mx-auto">
-          <div class="relative">
-            <input
-            type="text"
-            id="searchInput"
-            placeholder="Buscar por nombre o correo..."
-            class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-700"
-            />
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <i class="fas fa-search text-gray-400"></i>
+  <!-- Contenido principal -->
+  <main class="mt-10 flex-1 px-4 py-10 md:px-8 max-w-7xl mx-auto">
+    <!-- Buscador -->
+    <div class="mb-8">
+      <form id="filterForm" class="max-w-2xl mx-auto w-full">
+        <div class="relative">
+          <input
+          type="text"
+          id="searchInput"
+          placeholder="<%= __('searchPlaceholder') %>"
+          class="w-full px-5 py-3 pr-12 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-700"
+          />
+          <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+            <i class="fas fa-search text-gray-400"></i>
           </div>
-      </div>
-  </form>
-
-    <div id="contactsContainer" >
-    <div class="contacts-container">
-        <div class="contacts-header">
-            <h1 class="contacts-title">Registros de Contacto</h1>
-            <span>Total: <%= contacts.length %></span>
         </div>
+      </form>
+    </div>
 
-        <% if (contacts.length > 0) { %>
-            <table class="contacts-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>pais</th>
-                        <th>Email</th>
-                        <th>Comentario</th>
-                        <th>IP</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% contacts.forEach(contact => { %>
-                        <tr>
-                            <td data-label="Nombre"><%= contact.nombre %></td>
-                            <td data-label="Pais"><%= contact.pais %></td>
-                            <td data-label="Email" class="contact-email"><%= contact.email %></td>
-                            <td data-label="Comentario"><%= contact.comentario %></td>
-                            <td data-label="IP" class="contact-ip"><%= contact.ip %></td>
-                            <td data-label="Fecha" class="contact-date">
-                                <%= new Date(contact.createdAt).toLocaleDateString() %>
-                                <br>
-                                <%= new Date(contact.createdAt).toLocaleTimeString() %>
-                            </td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        <% } else { %>
-            <p>No hay registros de contactos disponibles.</p>
-        <% } %>
-    </div>
-    </div>
-<script src="/js/filter.js"></script>
+    <!-- Tabla de contactos -->
+    <section class="bg-white rounded-xl shadow p-6 overflow-x-auto">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+        <h1 class="text-xl font-semibold text-gray-800 mb-2 md:mb-0"><%= __('contactRecords') %></h1>
+        <span class="text-sm text-gray-600"><%= __('total') %>: <%= contacts.length %></span>
+      </div>
+
+      <% if (contacts.length > 0) { %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto text-sm text-left text-gray-700">
+          <thead class="bg-gray-100 text-gray-800 uppercase text-xs">
+            <tr>
+              <th class="px-4 py-3"><%= __('name') %></th>
+              <th class="px-4 py-3"><%= __('country') %></th>
+              <th class="px-4 py-3"><%= __('email') %></th>
+              <th class="px-4 py-3"><%= __('comment') %></th>
+              <th class="px-4 py-3"><%= __('ip') %></th>
+              <th class="px-4 py-3"><%= __('date') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% contacts.forEach(contact => { %>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-2"><%= contact.nombre %></td>
+              <td class="px-4 py-2"><%= contact.pais %></td>
+              <td class="px-4 py-2 break-words"><%= contact.email %></td>
+              <td class="px-4 py-2"><%= contact.comentario %></td>
+              <td class="px-4 py-2 text-sm"><%= contact.ip %></td>
+              <td class="px-4 py-2 text-sm">
+                <%= new Date(contact.createdAt).toLocaleDateString() %><br />
+                <%= new Date(contact.createdAt).toLocaleTimeString() %>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% } else { %>
+      <p class="text-center text-gray-500 mt-6"><%= __('noContacts') %></p>
+      <% } %>
+    </section>
+  </main>
+
+  <script src="/js/filter.js"></script>
 </body>
 </html>

@@ -190,7 +190,7 @@ class ContactsController {
     try {
       const contacts = await ContactosModel.getAllContacts();
       console.log("Datos a renderizar:", contacts);
-      res.render('contactos', { contacts, isAdmin: true });
+      res.render('contactos', { contacts, isAdmin: true,view:'contactos'});
     } catch (error: any) {
       console.error('Error:', error);
       res.status(500).render('error', { message: 'Error al cargar contactos' });
@@ -200,7 +200,7 @@ class ContactsController {
   payment(req: Request, res: Response): Promise<void> {
     return new Promise<void>((resolve) => {
       try {
-        res.render('payment', { isAdmin: true });
+        res.render('payment', { isAdmin: true,view:'payment'});
         resolve();
       } catch (error: any) {
         console.error('Error:', error);
@@ -276,10 +276,10 @@ class ContactsController {
   async getPayment(req: Request, res: Response): Promise<void> {
     try {
       const datePayments = await ContactosModel.getAllPayments();
-      res.render('getPayments', { datePayments, isAdmin: true });
+      res.render('getPayments', {datePayments, isAdmin: true,view:'getPayment'});
     } catch (error: any) {
       console.error('Error:', error);
-      res.status(500).render('error', { 
+      res.status(500).render('error',{ 
         message: 'Error al obtener pagos',
         error: error.message
       });
@@ -307,7 +307,8 @@ class ContactsController {
         title: 'Data contabilidad',
         description: 'pagina de Davi de programacion II',
         imageUrl: 'https://p2-31878463-4.onrender.com/img/VINITINTO2.jpg',
-        pageUrl: 'https://p2-31878463-4.onrender.com'
+        pageUrl: 'https://p2-31878463-4.onrender.com',
+        view:'index'
       });
     } catch (error: any) {
       console.error(error.message);
@@ -318,7 +319,7 @@ class ContactsController {
   login(req: Request, res: Response): void {
     formType = req.query.form as string;
     try {
-      res.render('auth', { formType, isAdmin: false });
+      res.render('auth', { formType, isAdmin: false,view:'auth'});
     } catch (error: any) {
       console.error('', error.message);
       res.status(500).json({

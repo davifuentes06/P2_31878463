@@ -8,87 +8,131 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src='/js/alertConfig.js'></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      :root {
+        --primary:  #0066cc;
+        --secondary:#00ccff;
+        --accent:   #ff6600;
+        --dark:     #1a1a2e;
+        --light:    #f8f9fa;
+    }
+</style>
 </head>
-<body>
-  <div class="payment-container">
-    <div class="payment-header">
-      <h1 class="payment-title">Registro de Pago <i class="fas fa-credit-card card-icon"></i></h1>
-      <p class="payment-subtitle">Complete los detalles de su tarjeta</p>
-    </div>
-    
-    <form id='formularioPayment' class="payment-form">
-      <div class="form-group">
-        <label for="email" class="form-label">Correo Electrónico</label>
-        <input type="email" id="correo" name="correo" class="form-input" placeholder="ejemplo@dominio.com" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="cardholder" class="form-label">Nombre del Titular</label>
-        <input type="text" id="nombreTitular" name="nombreTitular" class="form-input" placeholder="Como aparece en la tarjeta" required>
-      </div>
-      
-      <div class="form-group">
-          <label for="cardNumber" class="form-label">Número de Tarjeta</label>
-          
-          <select name="cardNumber" id="cardNumber" class="form-input" required>
-            <option value="4111111111111111">4111111111111111</option>
-            <option value="5555555555554444">5555555555554444</option>
-            <option value="378282246310005">378282246310005</option>
-            <option value="6011111111111117">6011111111111117</option>
-            <option value="3530111333300000">3530111333300000</option>
-            <option value="30569309025904">30569309025904</option>
-          </select>
-        </div>
 
-      <div class="card-details">
-        <div class="form-group">
-          <label class="form-label">Fecha de Expiración</label>
-          <div class="expiration-group">
-            <select id="expMonth" name="expMonth" class="form-input expiration-input" required>
-              <option value="" disabled selected>Mes</option>
-              <% for(let i = 1; i <= 12; i++) { %>
-                <option value="<%= i < 10 ? '0' + i : i %>"><%= i < 10 ? '0' + i : i %></option>
+<body class="bg-gray-100 font-['Roboto'] min-h-screen flex items-center justify-center px-4 py-10">
+  <%-include('partials/navbar')%>
+  <div class="mt-20 w-full max-w-lg bg-white shadow-xl rounded-xl p-8">
+    
+    <!-- Encabezado -->
+    <header class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-gray-700 flex items-center justify-center gap-2">
+        <%= __('paymentForm.title') %> <i class="fas fa-credit-card text-indigo-500"></i>
+      </h1>
+      <p class="text-gray-500 mt-2"><%= __('paymentForm.subtitle') %></p>
+    </header>
+
+    <!-- Formulario -->
+    <form id="formularioPayment" class="space-y-6">
+      
+      <!-- Correo -->
+      <div>
+        <label for="correo" class="block text-sm font-medium mb-1"><%= __('paymentForm.email') %></label>
+        <input id="correo" name="correo" type="email"
+               placeholder="<%= __('paymentForm.emailPlaceholder') %>"
+               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+
+      <!-- Titular -->
+      <div>
+        <label for="nombreTitular" class="block text-sm font-medium mb-1"><%= __('paymentForm.cardholder') %></label>
+        <input id="nombreTitular" name="nombreTitular" type="text"
+               placeholder="<%= __('paymentForm.cardholderPlaceholder') %>"
+               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+
+      <!-- Número de tarjeta -->
+      <div>
+        <label for="cardNumber" class="block text-sm font-medium mb-1"><%= __('paymentForm.cardNumber') %></label>
+        <select id="cardNumber" name="cardNumber"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+          <option value="4111111111111111">4111 1111 1111 1111</option>
+          <option value="5555555555554444">5555 5555 5555 4444</option>
+          <option value="378282246310005">3782 822463 10005</option>
+          <option value="6011111111111117">6011 1111 1111 1117</option>
+          <option value="3530111333300000">3530 111333 300000</option>
+          <option value="30569309025904">3056 930902 5904</option>
+        </select>
+      </div>
+
+      <!-- Detalles tarjeta (exp + cvv + descripción) -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        <!-- Expiración -->
+        <div>
+          <label class="block text-sm font-medium mb-1"><%= __('paymentForm.expDate') %></label>
+          <div class="flex gap-2">
+            <select id="expMonth" name="expMonth"
+                    class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 focus:ring-indigo-500" required>
+              <option value="" disabled selected><%= __('paymentForm.month') %></option>
+              <% for (let i = 1; i <= 12; i++) { %>
+                <option value="<%= i < 10 ? '0'+i : i %>"><%= i < 10 ? '0'+i : i %></option>
               <% } %>
             </select>
-            <select id="expYear" name="expYear" class="form-input expiration-input" required>
-              <option value="" disabled selected>Año</option>
+            <select id="expYear" name="expYear"
+                    class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 focus:ring-indigo-500" required>
+              <option value="" disabled selected><%= __('paymentForm.year') %></option>
               <% const currentYear = new Date().getFullYear(); %>
-              <% for(let i = 0; i < 10; i++) { %>
+              <% for (let i = 0; i < 10; i++) { %>
                 <option value="<%= currentYear + i %>"><%= currentYear + i %></option>
               <% } %>
             </select>
           </div>
         </div>
-        
-        <div class="form-group">
-          <label for="descripcion" class="form-label">Descripcion</label>
-          <input type="text" id="descripcion" name="descripcion" class="form-input" placeholder="Ingresa Descripcion" required>
+
+        <!-- CVV -->
+        <div>
+          <label for="cvv" class="block text-sm font-medium mb-1"><%= __('paymentForm.securityCode') %></label>
+          <input id="cvv" name="cvv" type="text"
+                 placeholder="<%= __('paymentForm.cvvPlaceholder') %>"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500"
+                 pattern="[0-9]{3,4}" required>
         </div>
 
-        <div class="form-group">
-          <label for="cvv" class="form-label">Código de Seguridad</label>
-          <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" pattern="[0-9]{3,4}" required>
+        <!-- Descripción -->
+        <div class="sm:col-span-2">
+          <label for="descripcion" class="block text-sm font-medium mb-1"><%= __('paymentForm.description') %></label>
+          <input id="descripcion" name="descripcion" type="text"
+                 placeholder="<%= __('paymentForm.descriptionPlaceholder') %>"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500" required>
         </div>
       </div>
-      
-      <div class="form-group">
-        <label class="form-label">Monto a Pagar</label>
-        <div class="amount-group">
-          <select id="currency" name="currency" class="form-input currency-select" required>
-            <option value="USD">USD $</option>
-            <option value="EUR">EUR €</option>
-            <option value="GBP">GBP £</option>
-            <option value="JPY">JPY ¥</option>
+
+      <!-- Monto y moneda -->
+      <div>
+        <label class="block text-sm font-medium mb-1"><%= __('paymentForm.amount') %></label>
+        <div class="flex gap-2">
+          <select id="currency" name="currency"
+                  class="w-1/3 border border-gray-300 rounded-lg px-2 py-2 focus:ring-indigo-500" required>
+            <option value="USD"><%= __('paymentForm.currencyUSD') %></option>
+            <option value="EUR"><%= __('paymentForm.currencyEUR') %></option>
+            <option value="GBP"><%= __('paymentForm.currencyGBP') %></option>
+            <option value="JPY"><%= __('paymentForm.currencyJPY') %></option>
           </select>
-          <input type="number" id="amount" name="amount" class="form-input" placeholder="0.00" min="0" step="0.01" required>
+          <input id="amount" name="amount" type="number" step="0.01" min="0"
+                 placeholder="0.00"
+                 class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500" required>
         </div>
       </div>
-      
-      <button type="submit" class="submit-btn">
-        <i class="fas fa-lock"></i> Realizar Pago
+
+      <!-- Botón -->
+      <button type="submit"
+              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+        <i class="fas fa-lock"></i> <%= __('paymentForm.payButton') %>
       </button>
     </form>
   </div>
+</body>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src='/js/fetch2.js'></script>
   <script src="/js/script.js"></script>
